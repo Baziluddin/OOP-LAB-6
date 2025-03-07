@@ -1,0 +1,132 @@
+ // BAZIL-UDDN-KHAN 24K-0559
+
+#include <iostream>
+using namespace std;
+
+
+class Device
+{
+    private:
+    int deviceID;
+    bool status;
+    
+    public:
+    Device()
+    {
+        deviceID = 0;
+        status = false;
+    }
+    
+    Device(int id,bool Status)
+    {
+       deviceID = id;
+       status = Status;
+    }
+    
+    void displayDetails()
+    {
+        cout << " Device id is " << deviceID << endl;
+        cout << " Status of Device is " << status << endl;
+    }
+    
+    
+};
+
+class SmartPhone : virtual public Device
+{
+    private:
+    float screenSize;
+
+    public:
+    SmartPhone()
+    {
+        screenSize =0.0;
+    }
+    
+    SmartPhone(int id,bool Status,float size) :Device(id,Status),screenSize(size)
+    {}
+    
+    void displayDetails()
+    {
+ 
+        cout << "  Screen size of Device is " << screenSize << endl;
+    }
+    
+    
+};
+
+class SmartWatch : virtual public Device
+{
+    private:
+    bool heartRateMonitor;
+    
+
+    public:
+    SmartWatch()
+    {
+        heartRateMonitor = false;
+    }
+    
+    SmartWatch(int id,bool Status,bool rate) :Device(id,Status), heartRateMonitor(rate)
+    { }
+    
+    void displayDetails()
+    {
+        
+        cout << "  Heart Rate is " << heartRateMonitor << endl;
+    }
+    
+    
+};
+
+class SmartWearable : public SmartPhone, SmartWatch  
+{
+    int stepCounter;
+    
+    public:
+    SmartWearable()
+    {
+        stepCounter =0;
+    }
+    
+    SmartWearable(int id,bool Status,bool rate,int counter,float size) : Device(id,Status) , SmartPhone(id,Status,size), SmartWatch(id,Status,rate), stepCounter(counter)
+    { }
+    
+    void displayDetails()
+    {
+        Device :: displayDetails();
+        SmartWatch :: displayDetails();
+        SmartPhone :: displayDetails();
+        cout << " Step Counter is " << stepCounter << endl;
+    }
+    
+};
+
+
+int main() 
+{
+    int id;
+    cout << " Enter Id " << endl;
+    cin >> id;
+    
+    bool status;
+    cout << " Enter Device Status (true for 1/false for 0 ) " << endl;
+    cin >> status;
+    
+    float size;
+    cout << " Enter Screen Size of SmartPhone " << endl;
+    cin >> size;
+    
+    bool heartrate;
+    cout << " Enter in(true for 1) /(false for 0) for heart rate " << endl;
+    cin >> heartrate;
+    
+    int counter;
+    cout << " Enter Step Counter " << endl;
+    cin >> counter;
+    
+    SmartWearable w(id,status,heartrate,counter,size);
+    w.displayDetails();
+
+    return 0;
+}
