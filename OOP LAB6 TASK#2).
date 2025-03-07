@@ -1,0 +1,120 @@
+// 24k-0559 Bazil - Uddin - Khan 
+#include<iostream>
+using namespace std;
+
+class Vehicle
+{
+    private:
+    string brand;
+    int speed;
+
+    public:
+    Vehicle()
+    {
+        brand = " ";
+        speed = 0;
+
+    }
+
+    Vehicle(string   Brand, int Speed): brand(Brand), speed(Speed)
+    {}
+
+  void displayDetails()
+   {
+   
+    cout << " brand is " << brand << endl;
+    cout << " speed is " << speed << endl;
+
+   
+  }
+
+};
+
+class Car : public Vehicle
+{
+    private:
+   
+    int seats;
+
+    public:
+    Car()
+    {
+       
+        seats = 0;
+
+    }
+
+    Car(string   Brand, int Speed, int Seats): Vehicle(Brand,Speed)
+    {
+        seats = Seats;
+    }
+
+  void displayDetails()
+   {
+    Vehicle :: displayDetails();
+
+   
+   
+    cout << " sEATS is " << seats << endl;
+
+   
+  }
+ 
+
+
+
+
+};
+class ElectricCar : public Car
+{
+    private:
+   
+    int batterylife;
+
+    public:
+    ElectricCar()
+    {
+       
+        batterylife =0;
+
+    }
+
+    ElectricCar(string Brand, int Speed, int Seats ,int battery): Car(Brand, Speed, Seats)
+    {
+        batterylife = battery;
+    }
+
+  void displayDetails()
+   {
+    Car :: displayDetails();
+
+   
+   
+    cout << " baaterly life is " << batterylife << endl;
+
+   
+  }
+ 
+
+};
+
+int main()
+{
+string brand;
+cout << " enter brand " << endl;
+cin >> brand;
+int speed;
+cout << " enter speed " << endl;
+cin >> speed;
+int seats;
+cout << " enter seats " << endl;
+cin >> seats ;
+int  batterylife;
+cout << " enter batteylife " << endl;
+cin >>batterylife ;
+
+ElectricCar c(brand,speed,seats,batterylife);
+c.displayDetails();
+
+
+}
