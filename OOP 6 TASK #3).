@@ -1,0 +1,135 @@
+// 24k-0559 Bazil - Uddin - Khan 
+ #include<iostream> 
+ using namespace std;
+
+class Person
+{
+    private: string name; 
+    int age;
+
+public:
+Person()
+{
+    name = " ";
+    age = 0;
+
+}
+
+Person(string Name, int Age): name(Name), age(Age)
+{}
+
+void displayDetails() {
+
+cout << " Name  is " << name << endl;
+cout << " Age  is " << age << endl;
+
+}
+
+};
+
+class Teacher : virtual public Person { private:
+
+string subject;
+
+public:
+Teacher()
+{
+   
+  subject = " ";
+
+}
+
+Teacher(string name, int age, string Subject): Person(name,age)
+{
+    subject = Subject;
+}
+
+void displayDetails() 
+{ 
+    Person :: displayDetails();
+
+    cout << " Subject is " << subject << endl;
+
+}
+
+}; 
+
+class Researcher : virtual public Person {
+    private:
+
+string researchArea;
+
+public:
+Researcher()
+{
+   
+ researchArea = " ";
+
+}
+
+Researcher(string name, int age, string rearch): Person(name,age)
+{
+    researchArea = rearch;
+}
+
+void displayDetails() 
+{
+    Person :: displayDetails();
+    cout << " Researcher Area is " << researchArea << endl; 
+    
+}
+
+};
+
+class Proffessor : public Teacher ,public Researcher {
+    private: 
+    int Publications;
+
+public:
+Proffessor()
+{
+    Publications = 0;
+}
+
+Proffessor(string name, int Age,string subject , string rearch,int publication) : Person(name,Age), Teacher(name,Age,subject),Researcher(name,Age,rearch)
+{
+    
+    Publications = publication;
+}
+
+void displayDetails()
+
+{
+   
+    Teacher :: displayDetails();
+    cout << " Publucations are  " << Publications << endl; }
+
+};
+
+int main()
+{ 
+    string Name; 
+    
+    cout << " enter Name " << endl;
+    getline(cin,Name);
+
+int age; cout << " enter age " << endl; cin >> age;
+
+string Subject;
+cin.ignore();
+cout << " enter subject " << endl;
+getline(cin,Subject);
+
+string  reasearch; 
+
+cout << " enter Researcher " << endl; 
+getline(cin,reasearch);
+
+int publication; 
+cout << " Enter Number Of publications " << endl; 
+cin >> publication;
+
+Proffessor p(Name,age,Subject,reasearch,publication);
+p.displayDetails();
+
+}
