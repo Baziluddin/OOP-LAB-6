@@ -1,0 +1,110 @@
+// Bazil-Uddin-Khan 24k- 0559
+#include <iostream>
+using namespace std;
+
+class Account
+{
+    private:
+    int accountNumber;
+    float balance;
+    
+    public:
+    Account()
+    {
+        accountNumber =0;
+        balance = 0.0;
+    }
+    
+    Account(int num,float Balance) : accountNumber(num),balance(Balance)
+    {}
+    
+    void displayDetails()
+    {
+        cout << " Account Num is " << accountNumber << endl;
+        cout << " Balance is " << balance << endl;
+    }
+    
+    
+};
+
+class SavingsAccount : public Account
+{
+    private:
+    float interestRate;
+    
+    public:
+    SavingsAccount()
+    {
+        interestRate = 0.0;
+    }
+    
+    SavingsAccount(int num,float Balance,float rate) : Account(num, Balance) , interestRate(rate)
+    { }
+    
+    void displayDetails()
+    {
+        Account :: displayDetails();
+        cout << " Interest Rate is " << interestRate << endl;
+    }
+    
+};
+
+class CheckingAccount : public Account
+{
+    private:
+    float overdraftLimit;
+    
+    public:
+    CheckingAccount()
+    {
+        overdraftLimit = 0.0;
+    }
+    
+    CheckingAccount(int num,float Balance,float limit) : Account(num, Balance) , overdraftLimit(limit)
+    { }
+    
+    void displayDetails()
+    {
+        Account :: displayDetails();
+        cout << " Over draft Limit  is " << overdraftLimit << endl;
+    }
+    
+};
+
+int main()
+{
+    int Num;
+    cout << " Enter The Account Number " << endl;
+    cin >> Num;
+    
+    float balance;
+    cout << " Enter Balance in Account " << endl;
+    cin >> balance;
+    
+    float rate;
+    cout << " Enter Interest Rate " << endl;
+    cin >> rate;
+    
+    float limit;
+    cout << " Enter Over draft Limit " << endl;
+    cin >> limit;
+    
+    string Choice;
+    cout << " Enter Choice For S(Savings) && For Checking(C) " << endl;
+    cin >> Choice;
+    if(Choice == "S")
+    {
+        SavingsAccount saccount(Num,balance,rate);
+        saccount.displayDetails();
+    }
+    else
+    {
+        CheckingAccount saccount(Num,balance,limit);
+        saccount.displayDetails();
+    } 
+    
+    
+    
+
+    return 0;
+}
